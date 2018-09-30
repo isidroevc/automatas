@@ -1,6 +1,10 @@
 package Excepciones;
 
 public class IndiceFueradeLimites extends RuntimeException {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public IndiceFueradeLimites() {
         super();
     }

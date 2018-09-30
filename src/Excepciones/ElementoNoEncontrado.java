@@ -1,6 +1,10 @@
 package Excepciones;
 
 public class ElementoNoEncontrado extends RuntimeException 	{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ElementoNoEncontrado() {
         super();
     }
