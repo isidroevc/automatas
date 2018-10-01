@@ -3,9 +3,9 @@ package estructuras;
 import Excepciones.ElementoNoEncontrado;
 
 public class Lista<TipoDato> implements ILista<TipoDato>{
-	public Nodo<TipoDato> inicio;
-	public Nodo<TipoDato> fin;
-	public int longitud = 0;
+	private  Nodo<TipoDato> inicio;
+	private  Nodo<TipoDato> fin;
+	private  int longitud = 0;
 	//Constructors
 	
 	public Lista() {
@@ -150,6 +150,10 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 			result += this.obtener(i).toString() + ((i < c -1 ) ? ", " : "");
 		}
 		return result + "]";
+	}
+	
+	public int longitud() {
+		return this.longitud;
 	}
 	
 }

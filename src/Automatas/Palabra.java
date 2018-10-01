@@ -10,10 +10,10 @@ public class Palabra<TipoSimbolo> {
 	}
 	public Palabra<TipoSimbolo> concatenar(Palabra<TipoSimbolo>p){
 		Lista<TipoSimbolo> nuevaLista=new Lista<TipoSimbolo>();
-		for(int i=0;i<this.palabra.longitud;i++){
+		for(int i=0;i<this.palabra.longitud();i++){
 			p.palabra.agregar(this.palabra.obtener(i));
 		}
-		for(int i=0;i<=p.palabra.longitud;i++){
+		for(int i=0;i<=p.palabra.longitud();i++){
 			nuevaLista.agregar(p.palabra.obtener(i));
 		}
 		
@@ -27,15 +27,29 @@ public class Palabra<TipoSimbolo> {
 	}
 	public Palabra<TipoSimbolo> subPalabra(int a, int b){
 		Lista<TipoSimbolo>otraPalabra=new Lista<TipoSimbolo>();
-		if(a<b){
-			for(int i =a;i<b;i++){
-				otraPalabra.agregar(palabra.obtener(a));
+		if(a <= b){
+			for(int i =a;i<=b;i++){
+				otraPalabra.agregar(palabra.obtener(i));
 			}
 			return new Palabra<TipoSimbolo>(otraPalabra);
 		}else{
 			throw new EntradaIncorrecta("Not found");
 		}
 		
+	}
+	
+	public int longitud() {
+		return this.palabra.longitud();
+	}
+	
+	
+	@Override
+	public String toString() {
+		String s = "";
+		for(int i = 0, c = palabra.longitud(); i< c; i++) {
+			s += palabra.obtener(i).toString();
+		}
+		return s;
 	}
 
 }

@@ -2,9 +2,11 @@ package Automatas;
 
 import estructuras.Lista;
 
-public interface IAFD<TipoDatos> {
-	public void agregarAlfabeto(Lista<Object> alf);
-	public void asignarrEstadosFinales(Lista<String> estFinales);
-	public void asignarConjuntoEstados(Lista<String> est);
-	public void transiciones(FuncionDeTransicion ftd);
+public interface IAFD<TipoSimbolo> {
+	public void asignarEstadoInicial(String s);
+	public void asignarEstadosFinales(Lista<String> estFinales);
+	public void leerSiguiente();
+	public String snapShot();
+	public String snapShotChain(Palabra<TipoSimbolo> p);
+	public boolean acepta(Palabra<TipoSimbolo> s);
 }
