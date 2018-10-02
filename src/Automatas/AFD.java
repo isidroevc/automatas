@@ -55,6 +55,10 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 		// TODO Auto-generated me
 		this.estadosFinales = estFinales;
 	}
+	
+	public Lista<String> obtenerEstadosFinales() {
+		return this.estadosFinales;
+	}
 
 	public void leerSiguiente() {
 		this.estadoActual = fdt.obtenerEstado(this.estadoActual, this.palabraActual.simboloEn(indiceActual));
@@ -97,16 +101,17 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 		return estadosFinales.existe(estado);
 	}
 	
-	public boolean esEquivalente(AFD<TipoSimbolo> a) {
-		return false;
-	}
 	
-	public String[][] procedimientoEquivalencia() {
-		return null;
-	}
-	
-	public FuncionDeTransicion<TipoSimbolo>obtenerFdt() {
+	public FuncionDeTransicion<TipoSimbolo> obtenerFdt() {
 		return this.fdt;
 	}
 	
+	public ProcedimientoEquivalencia<TipoSimbolo> compararEquivalencia(AFD<TipoSimbolo> b) {
+		return new ProcedimientoEquivalencia<TipoSimbolo>(this, b);
+	}
+	
+	
+	public String obtenerEstadoInicial() {
+		return estadoInicial;
+	}
 }

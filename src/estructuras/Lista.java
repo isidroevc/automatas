@@ -49,15 +49,15 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 	}
 
 	public void quitar(int index) {
-		if(index > this.longitud - 1 || index < 0)
-			throw new IndexOutOfBoundsException("Index out of bounds");
 		Nodo<TipoDato> n = this.inicio;
 		int i = 0;
+		if(index > this.longitud - 1 || index < 0)
+			throw new IndexOutOfBoundsException("Index out of bounds");
 		if(index == 0) {
 			this.inicio = this.inicio.next;
-			longitud--;
+			this.longitud--;
 			return;
-		}
+		}	
 		while(n != null) {
 			if(i == index -1)
 				break;
@@ -66,8 +66,11 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 		}
 		if(i < index - 1)
 			throw new ElementoNoEncontrado("Not found");
-		n.next = n.next.next;
-		longitud--;
+		if(i != this.longitud - 1)
+			n.next = n.next.next;
+		else 
+			n.next = null;
+		this.longitud--;
 	}
 
 	public void agregarEn(int index, TipoDato d) {
@@ -96,7 +99,7 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 	}
 
 	public TipoDato obtener(int index) {
-		if(index > this.longitud - 1 || index < 0)
+		if(index >= this.longitud || index < 0)
 			throw new ElementoNoEncontrado("Not found");
 		Nodo<TipoDato> n = this.inicio;
 		int i = 0;
@@ -104,12 +107,13 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 			return this.inicio.dato;
 		}
 		while(n != null) {
+			
 			if(i == index)
 				return n.dato;
 			n = n.next;
 			i++;
 		}
-		throw new ElementoNoEncontrado("Not found");
+		throw new ElementoNoEncontrado("Not found, " + this.longitud + " index: " + index);
 	}
 
 	public void asignar(int index, TipoDato d) {
