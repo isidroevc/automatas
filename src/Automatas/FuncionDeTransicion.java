@@ -56,7 +56,7 @@ public class FuncionDeTransicion<TipoSimbolo> {
 	public String obtenerEstado(String estado, TipoSimbolo s) {
 		int indiceEstado = estados.indice(estado), indiceSimbolo = alfabeto.indice(s);
 		if(indiceEstado == -1 )
-			throw new ElementoNoEncontrado("Se ha proporcionado un estado inexistente en el conjunto de estados");
+			throw new ElementoNoEncontrado("Se ha proporcionado un estado inexistente en el conjunto de estados, estado");
 		if(indiceSimbolo == -1)
 			throw new ElementoNoEncontrado("Se ha proporcionado un simbolo inexistente en el alfabeto");
 		
