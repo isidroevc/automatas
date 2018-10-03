@@ -96,6 +96,7 @@ private FuncionDeTransicion<String> fdt;
         @Override 
         public void mousePressed(MouseEvent me){
             if(me.getSource().equals(crearFDT)){
+            	
                    alf=textAlf.getText().split(",");
                    for(int i=0;i<alf.length;i++){
                 	   alfabeto.agregar(alf[i]);//Agregar datos a la lista alfabeto
@@ -109,13 +110,14 @@ private FuncionDeTransicion<String> fdt;
                        conjuntoEst.agregar(cEstados[i]);//Agregar datos a la lista conjunto de estados   
                    }
                    estadoInicial=textEsInicial.getText();
-                   matriz=new String[cEstados.length+1][alf.length+2];
+                   matriz=new String[cEstados.length+1][alf.length+1];
                    for(int i=0;i<cEstados.length;i++){
                 	   for(int j=0;j<alf.length;j++){
                     	   matriz[0][j+1]=alf[j];
                        }   
                 	   matriz[i+1][0]=cEstados[i];
                    }
+                   alf= new String[alf.length+1];
                    modelo = new DefaultTableModel(matriz,alf);
                    
                    tabla=new JTable(modelo);
@@ -130,7 +132,8 @@ private FuncionDeTransicion<String> fdt;
         }
     }
     public void construirTabla(){
-    	for(int i=0;i<cEstados.length;i++){
+    	matriz[0][0]="";
+    	for(int i=0;i<=cEstados.length;i++){
      	   for(int j=0;j<alf.length;j++){
 
          	   matriz[i][j]=(String)tabla.getValueAt(i,j);
@@ -138,15 +141,15 @@ private FuncionDeTransicion<String> fdt;
             }   
         }
 		fdt=new FuncionDeTransicion<String>(conjuntoEst,alfabeto,matriz);
-		//LeerAFD();
+		LeerAFD();
 		imprimir();
 	}
 	public AFD LeerAFD(){
 		return new AFD(estadoInicial,estadoFinal,fdt);
 	}
 	void imprimir(){
-		for(int i=0;i<cEstados.length;i++){
-	     	   for(int j=0;j<=alf.length;j++){
+		for(int i=0;i<=cEstados.length;i++){
+	     	   for(int j=0;j<alf.length;j++){
 
 	         	   System.out.print(matriz[i][j]+" ");
 	         	   
