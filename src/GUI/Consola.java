@@ -48,7 +48,7 @@ public class Consola {
 		}
 
 		fdt=new FuncionDeTransicion<String>(conjuntoEst,alfa,mat);
-		return new AFD(estIni,estadoFinal,fdt);
+		return new AFD<String>(estIni,estadoFinal,fdt);
 	}
 	
 	
