@@ -145,7 +145,7 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 	}
 	
 	private boolean sonCompatibles(String a, String b) {
-		return (estadosFinales.existe(a) && estadosFinales.existe(b)) && (!estadosFinales.existe(a) && !estadosFinales.existe(b));
+		return (estadosFinales.existe(a) && estadosFinales.existe(b)) || (!estadosFinales.existe(a) && !estadosFinales.existe(b));
 	}
 	
 	@Override

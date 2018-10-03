@@ -8,5 +8,7 @@ public class PruebaReduccion {
 		Consola c = new Consola();
 		AFD<String> afd = c.leerAFD();
 		System.out.println(afd.toString());
+		System.out.println("=============================================================");
+		System.out.println(afd.reducir().toString());
 	}
 }

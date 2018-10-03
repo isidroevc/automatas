@@ -23,7 +23,7 @@ public class ProcedimientoEquivalencia<TipoSimbolo> {
 	
 	private void resolver() {
 		// agregar primera linea con los estaos iniciales
-		String p = a.obtenerEstadoInicial(), q = a.obtenerEstadoInicial();
+		String p = a.obtenerEstadoInicial(), q = b.obtenerEstadoInicial();
 		Lista<Par<String, String>> renglon = new Lista<Par<String, String>>();
 		Lista<Par<String, String>> paresNuevos = new Lista<Par<String, String>>();
 		Lista<Par<String, String>> paresProcesados = new Lista<Par<String, String>>();
