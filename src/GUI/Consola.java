@@ -12,8 +12,8 @@ public class Consola {
 	private Scanner teclado;
 	private FuncionDeTransicion<String> fdt;
 	String alfabeto,conEst,estFin,estIni;
-	String arr[],mat[][];
-	public AFD<String> leerAFD(){
+	String arr[],mat[][],arr1[],arr2[];
+	public AFD leerAFD(){
 		teclado= new Scanner(System.in);
 		alfa=new Lista<String>();
         estadoFinal=new Lista<String>();
