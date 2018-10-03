@@ -132,15 +132,18 @@ private FuncionDeTransicion<String> fdt;
         }
     }
     public void construirTabla(){
+    	String m[][] = new String[conjuntoEst.longitud()][alfabeto.longitud()];
     	matriz[0][0]="";
-    	for(int i=0;i<=cEstados.length;i++){
-     	   for(int j=0;j<alf.length;j++){
+    	
+    	System.out.println("estados: "+ conjuntoEst.longitud() + " alfabeto: " + alfabeto.longitud());
+    	for(int i=0;i< conjuntoEst.longitud();i++){
+     	   for(int j=0;j< alfabeto.longitud();j++){
 
-         	   matriz[i][j]=(String)tabla.getValueAt(i,j);
+         	   m[i][j]=(String)tabla.getValueAt(i+1,j);
          	   
             }   
         }
-		fdt=new FuncionDeTransicion<String>(conjuntoEst,alfabeto,matriz);
+		fdt=new FuncionDeTransicion<String>(conjuntoEst,alfabeto,m);
 		LeerAFD();
 		imprimir();
 	}
