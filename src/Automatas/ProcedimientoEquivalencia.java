@@ -32,7 +32,6 @@ public class ProcedimientoEquivalencia<TipoSimbolo> {
 		paresNuevos.agregar(new Par<String, String>(p, q));
 		
 		while(paresNuevos.longitud() > 0) {
-			System.out.println("paresNuevos: " + paresNuevos.longitud());
 			parActual = paresNuevos.obtener(paresNuevos.longitud() - 1);
 			paresNuevos.quitar(paresNuevos.longitud() - 1);
 			renglon.agregar(parActual);
@@ -50,7 +49,6 @@ public class ProcedimientoEquivalencia<TipoSimbolo> {
 				parAux = new Par<String, String>();
 				parAux.a = fdtA.obtenerEstado(parActual.a, simboloActual);
 				parAux.b = fdtB.obtenerEstado(parActual.b, simboloActual);
-				System.out.println("Aquí men, parActual : " + parActual.b);
 				if(!paresNuevos.existe(parAux) && !paresProcesados.existe(parAux))
 					paresNuevos.agregar(parAux);
 				renglon.agregar(parAux);

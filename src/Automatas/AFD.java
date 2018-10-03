@@ -135,7 +135,7 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 					if(auxA.esEquivalente(auxB)) {
 						// Si si son equivalentes los estados, hay que eliminar uno de ellos
 						//Aquí siempre sera q, pos porque sí x'D.
-						return (new AFD<TipoSimbolo>(this.estadoInicial, this.estadosFinales.copiar(), this.fdt.quitarEstado(q, p))).reducir();
+						return (new AFD<TipoSimbolo>(this.estadoInicial, this.estadosFinales.copiar(), this.fdt.quitarEstado(q, p, this.estadoInicial))).reducir();
 					}
 				}
 			}

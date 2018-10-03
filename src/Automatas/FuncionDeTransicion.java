@@ -76,19 +76,19 @@ public class FuncionDeTransicion<TipoSimbolo> {
 	}
 	
 	
-	public FuncionDeTransicion<TipoSimbolo> quitarEstado(String estado, String equivalente) {
+	public FuncionDeTransicion<TipoSimbolo> quitarEstado(String estado, String equivalente, String inicial) {
 		Lista<String> nuevosEstados = this.estados.copiar();
 		int indiceEstado = estados.indice(estado);
 		nuevosEstados.quitar(indiceEstado);
 		int a = nuevosEstados.longitud(), b = this.alfabeto.longitud(), ic = 0, aa = estados.longitud();
 		String[][] nuevaTabla = new String[a][b];
-		
+		FuncionDeTransicion<TipoSimbolo> resultado;
 		for(int i = 0; i < aa; i++ ){
 			if(i == indiceEstado)
 				continue;
 			for(int j = 0; j < b; j++) {
 				
-				if(estado.equals(this.tabla[i][j])) {
+				if(this.tabla[i][j].equals(estado) && !equivalente.equals(null)) {
 					nuevaTabla[ic][j] = equivalente;
 					continue;
 				}
@@ -96,13 +96,31 @@ public class FuncionDeTransicion<TipoSimbolo> {
 			}
 			ic++;
 		}
-		for(int i = 0; i < nuevaTabla.length; i++) {
-			for(int j = 0; j < nuevaTabla[i].length; j++) {
-				System.out.print(nuevaTabla[i][j]);
-			}
-			System.out.println("");
+		resultado = new FuncionDeTransicion<TipoSimbolo>(nuevosEstados, alfabeto.copiar(), nuevaTabla);
+		for(int i = 0, c = nuevosEstados.longitud(); i < c; i++) {
+				System.out.println(nuevosEstados.obtener(i));
+				if(!resultado.existeEstado(nuevosEstados.obtener(i), inicial)) {
+					System.out.println("que no existe: " + nuevosEstados.obtener(i));
+					return resultado.quitarEstado(nuevosEstados.obtener(i), null, inicial);
+				}
+			
 		}
-		return new FuncionDeTransicion<TipoSimbolo>(nuevosEstados, alfabeto.copiar(), nuevaTabla);
+		return resultado;
+	}
+	
+	public boolean existeEstado(String estado, String inicial) {
+		int indiceIgnorar = estados.indice(estado);
+		if(indiceIgnorar == -1) 
+			return false;
+		for(int i = 0, c = estados.longitud();  i < c; i++) {
+			if(i == indiceIgnorar)
+				continue;
+			for(int j = 0, l = alfabeto.longitud();  j < l; j++) {
+				if(tabla[i][j].equals(estado) || estado.equals(inicial))
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
@@ -116,7 +134,7 @@ public class FuncionDeTransicion<TipoSimbolo> {
 				estado = this.estados.obtener(i);
 				s = this.alfabeto.obtener(j);
 				result += "(" + estado +", " + s + ")-> " + this.obtenerEstado(estado, s);
-				if(ic < c*l) {
+				if(ic < c*l -1) {
 					result += ", ";
 				}
 				ic++;
