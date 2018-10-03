@@ -166,4 +166,12 @@ public class Lista<TipoDato> implements ILista<TipoDato>{
 		return this.longitud;
 	}
 	
+	
+	public Lista<TipoDato> copiar() {
+		Lista<TipoDato> nueva = new Lista<TipoDato>();
+		for(int i = 0, c = this.longitud; i < c; i++) {
+			nueva.agregar((TipoDato)(this.obtener(i)));
+		}
+		return nueva;
+	}
 }

@@ -110,8 +110,41 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 		return new ProcedimientoEquivalencia<TipoSimbolo>(this, b);
 	}
 	
+	public boolean esEquivalente(AFD<TipoSimbolo> b) {
+		return new ProcedimientoEquivalencia<TipoSimbolo>(this, b).equivalentes();
+	}
+	
 	
 	public String obtenerEstadoInicial() {
 		return estadoInicial;
+	}
+	
+	
+	public AFD<TipoSimbolo> reducir() {
+		// Para cada estado en los estados
+		String p, q;
+		AFD<TipoSimbolo> auxA, auxB;
+		FuncionDeTransicion<TipoSimbolo> fdtAux;
+		for(int i = 0, c = estados.longitud(); i < c; i++) {
+			for(int j = 0; j < c; j++) {
+				p = estados.obtener(i);
+				q = estados.obtener(j);
+				if(sonCompatibles(p,q) &&  !p.equals(q)) {
+					// Crear dos autómatas
+					auxA = new AFD<TipoSimbolo>(p, this.estadosFinales.copiar(), fdt.copiar());
+					auxB = new AFD<TipoSimbolo>(q, this.estadosFinales.copiar(), fdt.copiar());
+					if(auxA.esEquivalente(auxB)) {
+						// Si si son equivalentes los estados, hay que eliminar uno de ellos
+						//Aquí siempre sera q, pos porque sí x'D.
+						
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	private boolean sonCompatibles(String a, String b) {
+		return (estadosFinales.existe(a) && estadosFinales.existe(b)) && (!estadosFinales.existe(a) && !estadosFinales.existe(b));
 	}
 }

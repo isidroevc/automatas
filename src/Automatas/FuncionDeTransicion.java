@@ -48,6 +48,10 @@ public class FuncionDeTransicion<TipoSimbolo> {
 		this.tabla = tablaS;
 	}
 	
+	public String[][] obtenerTabla() {
+		return this.tabla.clone();
+	}
+	
 	
 	public String obtenerEstado(String estado, TipoSimbolo s) {
 		int indiceEstado = estados.indice(estado), indiceSimbolo = alfabeto.indice(s);
@@ -65,6 +69,23 @@ public class FuncionDeTransicion<TipoSimbolo> {
 	
 	public Lista<TipoSimbolo> obtenerAlfabeto() {
 		return this.alfabeto;
+	}
+	
+	public FuncionDeTransicion<TipoSimbolo> copiar() {
+		return new FuncionDeTransicion<TipoSimbolo>(estados.copiar(), alfabeto.copiar(), this.tabla.clone());
+	}
+	
+	
+	public FuncionDeTransicion<TipoSimbolo> quitarEstado(String estado, String equivalente) {
+		int a = this.estados.longitud() - 1, b = this.alfabeto.longitud();
+		String[][] tabla = new String[a][b];
+		
+		for(int i = 0; i < a; i++ ){
+			for(int j = 0; i < b; j++) {
+				
+			}
+		}
+		return null;
 	}
 	
 }
