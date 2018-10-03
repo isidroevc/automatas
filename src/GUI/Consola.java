@@ -29,15 +29,15 @@ public class Consola {
 		estFin=teclado.nextLine().trim();
 		arr=alfabeto.split(",");
 		for(int i=0;i<arr.length;i++){
-			alfa.agregar(arr[i]);
+			alfa.agregar(arr[i].trim());
 		}
 		arr1=conEst.split(",");
 		for(int i=0;i<arr1.length;i++){
-			conjuntoEst.agregar(arr1[i]);
+			conjuntoEst.agregar(arr1[i].trim());
 		}
 		arr2=estFin.split(",");
 		for(int i=0;i<arr2.length;i++){
-			estadoFinal.agregar(arr2[i]);
+			estadoFinal.agregar(arr2[i].trim());
 		}
 		mat=new String[conjuntoEst.longitud()][alfa.longitud()];
 		for(int i = 0, c = conjuntoEst.longitud(); i < c; i++) {
