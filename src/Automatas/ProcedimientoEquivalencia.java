@@ -50,6 +50,7 @@ public class ProcedimientoEquivalencia<TipoSimbolo> {
 				parAux = new Par<String, String>();
 				parAux.a = fdtA.obtenerEstado(parActual.a, simboloActual);
 				parAux.b = fdtB.obtenerEstado(parActual.b, simboloActual);
+				System.out.println("Aquí men, parActual : " + parActual.b);
 				if(!paresNuevos.existe(parAux) && !paresProcesados.existe(parAux))
 					paresNuevos.agregar(parAux);
 				renglon.agregar(parAux);
