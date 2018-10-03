@@ -7,7 +7,7 @@ import estructuras.Lista;
 
 public class PruebaEquivalencia {
 	public static void main(String[] args) {
-		/*Lista<Character> alfabeto = new Lista<Character>(new Character[] {'0', '1'});
+		Lista<Character> alfabeto = new Lista<Character>(new Character[] {'0', '1'});
 		Lista<String> estados = new Lista<String>(new String[] {"q0", "q1", "q2"});
 		String[][] tabla = {{"q1", "q0"}, {"q1", "q2"}, {"q1", "q0"}}; 
 		String[][] tabla2 = {{"q0", "q0"}, {"q1", "q2"}, {"q1", "q1"}}; 
@@ -25,6 +25,6 @@ public class PruebaEquivalencia {
 				System.out.print(procedimiento[i][j] + "   ");
 			}
 			System.out.print("\n");
-		}*/
+		}
 	}
 }
