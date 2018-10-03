@@ -13,7 +13,7 @@ public class Consola {
 	private FuncionDeTransicion<String> fdt;
 	String alfabeto,conEst,estFin,estIni;
 	String arr[],mat[][];
-	public AFD leerAFD(){
+	public AFD<String> leerAFD(){
 		teclado= new Scanner(System.in);
 		alfa=new Lista<String>();
         estadoFinal=new Lista<String>();

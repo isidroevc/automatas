@@ -124,7 +124,6 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 		// Para cada estado en los estados
 		String p, q;
 		AFD<TipoSimbolo> auxA, auxB;
-		FuncionDeTransicion<TipoSimbolo> fdtAux;
 		for(int i = 0, c = estados.longitud(); i < c; i++) {
 			for(int j = 0; j < c; j++) {
 				p = estados.obtener(i);
@@ -136,15 +135,25 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 					if(auxA.esEquivalente(auxB)) {
 						// Si si son equivalentes los estados, hay que eliminar uno de ellos
 						//Aquí siempre sera q, pos porque sí x'D.
-						
+						return (new AFD<TipoSimbolo>(this.estadoInicial, this.estadosFinales.copiar(), this.fdt.quitarEstado(q, p))).reducir();
 					}
 				}
 			}
 		}
-		return null;
+		// si llega aqui, ya no se pudo reducir y la reduccion es el mismo, juas juas.
+		return this;
 	}
 	
 	private boolean sonCompatibles(String a, String b) {
 		return (estadosFinales.existe(a) && estadosFinales.existe(b)) && (!estadosFinales.existe(a) && !estadosFinales.existe(b));
+	}
+	
+	@Override
+	public String toString() {
+		return  "estadoInicial: " + this.estadoInicial
+				+ "\nalfabeto: " + this.alfabeto.toString()
+				+ "\nestados: "  + this.estados.toString()
+				+ "\nestados finales: " + this.estadosFinales.toString()
+				+ "\nfuncion de transicion: " + this.fdt.toString();
 	}
 }

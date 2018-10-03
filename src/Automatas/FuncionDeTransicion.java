@@ -78,14 +78,36 @@ public class FuncionDeTransicion<TipoSimbolo> {
 	
 	public FuncionDeTransicion<TipoSimbolo> quitarEstado(String estado, String equivalente) {
 		int a = this.estados.longitud() - 1, b = this.alfabeto.longitud();
-		String[][] tabla = new String[a][b];
+		String[][] nuevaTabla = new String[a][b];
 		
 		for(int i = 0; i < a; i++ ){
-			for(int j = 0; i < b; j++) {
-				
+			for(int j = 0; j < b; j++) {
+				if(estado.equals(this.tabla[i][j])) {
+					nuevaTabla[i][j] = equivalente;
+					continue;
+				}
+				nuevaTabla[i][j] = this.tabla[i][j];
 			}
 		}
-		return null;
+		return new FuncionDeTransicion<TipoSimbolo>(estados.copiar(), alfabeto.copiar(), nuevaTabla);
+	}
+	
+	@Override
+	public String toString() {
+		String result = "{ ";
+		String estado;
+		TipoSimbolo s;
+		for(int i = 0, c = this.estados.longitud(); i < c; i ++) {
+			for(int j = 0, l = this.alfabeto.longitud(); i < l; i++) {
+				estado = this.estados.obtener(i);
+				s = this.alfabeto.obtener(j);
+				result += "(" + estado +", " + s + ")-> " + this.obtenerEstado(estado, s);
+				if(i != c - 1 && j != l - 1) {
+					result += ", ";
+				}
+			}
+		}
+		return result;
 	}
 	
 }
