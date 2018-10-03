@@ -20,7 +20,7 @@ public class PruebaVista{
 private JFrame ventana;
 private JPanel panel;
 private JTable tabla;
-private JLabel etAlf,instruccion,etEsFinal,etEsInicial,etConEst,funTra;
+private JLabel etAlf,instruccion,etEsFinal,etEsInicial,etConEst;
 private JTextField textAlf,textEsFinal,textEsInicial,textConEst;
 private JButton crearAFD,crearFDT;
 private Lista<String> alfabeto,estadoFinal,conjuntoEst;
@@ -41,7 +41,6 @@ private FuncionDeTransicion<String> fdt;
         textEsInicial= new JTextField();
         etConEst = new JLabel("Conjunto de estados");
         textConEst= new JTextField();
-        funTra=new JLabel();
         crearFDT = new JButton("CREAR Funcion De Transicion");
         alfabeto=new Lista<String>();
         estadoFinal=new Lista<String>();
@@ -133,34 +132,18 @@ private FuncionDeTransicion<String> fdt;
     }
     public void construirTabla(){
     	String m[][] = new String[conjuntoEst.longitud()][alfabeto.longitud()];
-    	matriz[0][0]="";
-    	
     	System.out.println("estados: "+ conjuntoEst.longitud() + " alfabeto: " + alfabeto.longitud());
     	for(int i=0;i< conjuntoEst.longitud();i++){
      	   for(int j=0;j< alfabeto.longitud();j++){
-
-         	   m[i][j]=(String)tabla.getValueAt(i+1,j);
-         	   
-            }   
+     		   m[i][j]=(String)tabla.getValueAt(i+1,j);
+     	   }   
         }
 		fdt=new FuncionDeTransicion<String>(conjuntoEst,alfabeto,m);
 		LeerAFD();
-		imprimir();
 	}
 	public AFD LeerAFD(){
 		return new AFD(estadoInicial,estadoFinal,fdt);
 	}
-	void imprimir(){
-		for(int i=0;i<=cEstados.length;i++){
-	     	   for(int j=0;j<alf.length;j++){
-
-	         	   System.out.print(matriz[i][j]+" ");
-	         	   
-	            }   
-	     	   System.out.print("\n");
-	        }
-	}
-    
     public static void main(String[] a){
 		new PruebaVista();
 	}
