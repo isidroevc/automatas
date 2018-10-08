@@ -1,0 +1,6 @@
+
+Integrantes: 
+Vásquez Cortés Isidro Emmanuel
+Villegas Ayala José Julio
+
+Para verificiar funcionamiento revisar paquete src/Entrega, correr ambas clases.

@@ -16,7 +16,7 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 	public AFD(String s, Lista<String> F, FuncionDeTransicion<TipoSimbolo> fdt) {
 		this.estados = fdt.obtenerEstados();
 		if(!validarEstadosFinales(F)) {
-			throw new EntradaIncorrecta("F no es subconjunto de K");
+			throw new EntradaIncorrecta("F no es subconjunto de K, K = " + estados.toString() + " F = " + F.toString());
 		}
 		if(!estados.existe(s)) {
 			throw new EntradaIncorrecta("El estado inicial no existe entre los estados indicados");
@@ -123,7 +123,10 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 	public AFD<TipoSimbolo> reducir() {
 		// Para cada estado en los estados
 		String p, q;
+		Lista<String> finalesAux;
+		Lista<String> estadosAux;
 		AFD<TipoSimbolo> auxA, auxB;
+		FuncionDeTransicion<TipoSimbolo> fdtAux;
 		for(int i = 0, c = estados.longitud(); i < c; i++) {
 			for(int j = 0; j < c; j++) {
 				p = estados.obtener(i);
@@ -132,10 +135,23 @@ public class AFD<TipoSimbolo> implements IAFD<TipoSimbolo> {
 					// Crear dos autómatas
 					auxA = new AFD<TipoSimbolo>(p, this.estadosFinales.copiar(), fdt.copiar());
 					auxB = new AFD<TipoSimbolo>(q, this.estadosFinales.copiar(), fdt.copiar());
+					
 					if(auxA.esEquivalente(auxB)) {
 						// Si si son equivalentes los estados, hay que eliminar uno de ellos
 						//Aquí siempre sera q, pos porque sí x'D.
-						return (new AFD<TipoSimbolo>(this.estadoInicial, this.estadosFinales.copiar(), this.fdt.quitarEstado(q, p, this.estadoInicial))).reducir();
+						if(this.estadoInicial.equals(q))
+							q = p;
+						finalesAux = this.estadosFinales.copiar();
+						fdtAux =  this.fdt.quitarEstado(q, p, this.estadoInicial);
+						estadosAux = fdtAux.obtenerEstados();
+						// Si se ha quitado un estado final, quitarlo tambien de la lista de estados finales
+						for(int r = 0, m = finalesAux.longitud(); r < m; r++ ) {
+							if(!estadosAux.existe(finalesAux.obtener(r)))
+								finalesAux.quitar(finalesAux.indice(finalesAux.obtener(r)));
+						}
+						if(finalesAux.existe(q))
+							finalesAux.quitar(finalesAux.indice(q));
+						return (new AFD<TipoSimbolo>(this.estadoInicial,finalesAux ,fdtAux)).reducir();
 					}
 				}
 			}

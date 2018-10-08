@@ -98,9 +98,7 @@ public class FuncionDeTransicion<TipoSimbolo> {
 		}
 		resultado = new FuncionDeTransicion<TipoSimbolo>(nuevosEstados, alfabeto.copiar(), nuevaTabla);
 		for(int i = 0, c = nuevosEstados.longitud(); i < c; i++) {
-				System.out.println(nuevosEstados.obtener(i));
 				if(!resultado.existeEstado(nuevosEstados.obtener(i), inicial)) {
-					System.out.println("que no existe: " + nuevosEstados.obtener(i));
 					return resultado.quitarEstado(nuevosEstados.obtener(i), null, inicial);
 				}
 			
